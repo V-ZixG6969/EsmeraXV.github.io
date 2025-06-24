@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV años Esmeralda - Invitación Digital</title>
+    <meta name="description" content="Te invitamos a celebrar los XV años de Esmeralda. Sábado 12 de Julio del 2025 a las 4 PM. Ceremonia religiosa y recepción.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1A0E0E 0%, #8B0000 50%, #DC143C 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .font-dancing {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-great-vibes {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700; }
+            to { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-sparkle {
+            animation: sparkle 2s linear infinite;
+        }
+
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Navigation */
+        .nav-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #DC143C, #FFD700);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #FFD700;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Floating Particles */
+        .floating-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #FFD700;
+            opacity: 0.8;
+            animation: sparkle 2s linear infinite;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #DC143C, #FFD700);
+            padding: 16px;
+            border-radius: 50%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid #FFD700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .music-player button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.2), rgba(255, 215, 0, 0.2));
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .event-card {
+            text-align: center;
+        }
+
+        .event-card i {
+            font-size: 60px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .countdown-item {
+            background: linear-gradient(135deg, #FFD700, #FFEAA7);
+            color: #8B0000;
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid #FFD700;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: scale(1.05);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(255, 215, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #FFD700, #FFEAA7);
+            color: #8B0000;
+            padding: 16px 32px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #FFEAA7, #FFD700);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #128C7E, #25D366);
+        }
+
+        /* Text Styles */
+        .title-xl {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.5);
+        }
+
+        .title-lg {
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.5);
+        }
+
+        .title-md {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #FFEAA7;
+        }
+
+        .text-gold {
+            color: #FFD700;
+        }
+
+        .text-champagne {
+            color: #FFEAA7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Button -->
+    <button class="nav-button" onclick="togglePage()">
+        <i class="fas fa-home"></i>
+        <span id="nav-text">Ver Invitación</span>
+    </button>
+
+    <!-- Floating Particles -->
+    <div class="floating-particles" id="particles"></div>
+
+    <!-- Music Player -->
+    <div class="music-player" onclick="toggleMusic()">
+        <button id="music-btn">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" autoplay loop>
+        <source src="videoplayback_converted.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Page -->
+    <div id="main-page" class="page active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg">
+                <img src="Imagen de WhatsApp 2025-06-22 a las 14.00.52_51df730c.jpg" alt="Elegant quinceañera celebration">
+            </div>
+            
+            <div class="hero-content animate-fade-in">
+                <!-- Main Title -->
+                <h1 class="font-great-vibes title-xl animate-glow" style="margin-bottom: 20px;">
+                   Esmeralda
+                </h1>
+                <h2 class="font-dancing title-lg" style="margin-bottom: 40px;">
+                    Mis XV años
+                </h2>
+
+           
+
+ 
+
+<div class="card">
+  <p class="font-dancing">
+    Sábado 12 de Julio del 2025
+  </p>
+  <p class="font-inter">
+    4:00 PM
+  </p>
+</div>
+
+ <h2 class="font-dancing title-lg" style="margin-bottom: 40px;">
+                    Faltan:
+                </h2>
+
+                <!-- Countdown Timer -->
+                <div class="countdown" id="countdown"></div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="section">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h3 class="font-great-vibes title-lg animate-glow" style="text-align: center; margin-bottom: 60px;">
+                    Detalles del Evento
+                </h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                    <!-- Ceremony Card -->
+                    <div class="card event-card">
+                        <i class="fas fa-church"></i>
+                        <h4 class="font-dancing title-md" style="margin-bottom: 16px;">Ceremonia Religiosa</h4>
+                        <p style="font-size: 1.2rem; margin-bottom: 8px;">4:00 PM</p>
+                        <p style="color: #FFEAA7; margin-bottom: 24px;">
+                            Parroquia San Martin de Porres<br>
+                            Col Sección 16
+                        </p>
+                        <a href="https://maps.app.goo.gl/C9oiUKHMfpninLjM9" target="_blank" class="btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Ver en el mapa
+                        </a>
+                    </div>
+
+                    <!-- Reception Card -->
+                    <div class="card event-card">
+                        <i class="fas fa-glass-cheers"></i>
+                        <h4 class="font-dancing title-md" style="margin-bottom: 16px;">Recepción</h4>
+                        <p style="font-size: 1.2rem; margin-bottom: 8px;">7:00 PM</p>
+                        <p style="color: #FFEAA7; margin-bottom: 24px;">
+                            Calle Felix Romero #89<br>
+                            Col Voluntad y Trabajo
+                        </p>
+                        <a href="https://maps.app.goo.gl/f8Exy4pQPPm4ZxKw8" target="_blank" class="btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Ver mapa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section">
+            <div style="max-width: 1600px; margin: 0 auto;">
+                <h3 class="font-great-vibes title-lg animate-glow" style="text-align: center; margin-bottom: 60px;">
+                    Galería
+                </h3>
+                
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="Diseño sin título (1).png" alt="Beautiful quinceañera dress">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="ba236d01-64cb-4a5a-86a0-dbc627411171.jpg" alt="Luxury party decorations">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="60350d2d-a6cc-44bd-b2bb-0173ded7aa94.jpg" alt="Elegant quinceañera celebration">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="779815ed-3fec-4990-8cda-961c3e96bf9b.jpg" alt="Red roses with gold accents">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="9f5e92d8-7768-4de0-9858-fabf66236e0d.png" alt="Elegant quinceañera celebration">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="4ebdc494-8d57-4580-b363-8bbb11ed5706.jpg" alt="Red roses with gold accents">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gift and Dress Code Section -->
+        <section class="section">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                    <!-- Gifts Card -->
+                    <div class="card event-card">
+                        <i class="fas fa-gift" style="color: #FFD700; font-size: 60px; margin-bottom: 24px;"></i>
+                        <h4 class="font-dancing title-md" style="margin-bottom: 16px;">Regalos</h4>
+                         <p class="font-dancing" style="font-size: 1.8rem; color: #ffffff;">
+                            El mayor regalo es tu presencia, pero aquí tienes una sugerencia:
+                        </p>
+                        <p class="font-dancing" style="font-size: 1.8rem; color: #FFD700;">
+                            Lluvia de sobres
+                        </p>
+                    </div>
+
+<!-- Dress Code Card -->
+                 <div class="card event-card">
+                        <i class="fas fa-user-tie" style="color: #FFD700; font-size: 60px; margin-bottom: 24px;"></i>
+                        <h4 class="font-dancing title-md" style="margin-bottom: 16px;">Código de Vestimenta</h4>
+                      <p class="font-dancing" style="font-size: 2.0rem; color: #ffffff;">
+                    Vestimenta formal
+                </p>
+
+                        <p style="font-style: italic; color: #FFEAA7; font-size: 0.9rem;">
+                            *El color rojo está reservado para la quinceañera
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section">
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h3 class="font-great-vibes title-lg animate-glow" style="margin-bottom: 40px;">
+                    Confirma tu Asistencia
+                </h3>
+                
+                <div class="card">
+                    <i class="fab fa-whatsapp" style="font-size: 60px; color: #25D366; margin-bottom: 24px;"></i>
+                    <p style="font-size: 1.2rem; margin-bottom: 24px;">
+                        ¡Nos encantaría tenerte con nosotros!
+                    </p>
+                    <a href="https://wa.me/528681188654?text=Hola,%20confirmo%20mi%20asistencia%20a%20los%20XV%20años%20de%20Esmeralda" 
+                       target="_blank" 
+                       class="btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Confirmar por WhatsApp
+                    </a>
+                    <p style="font-size: 0.9rem; color: #FFEAA7; margin-top: 16px;">
+                        +52 8681188654
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="section" style="text-align: center; padding-top: 0;">
+            <p class="font-dancing" style="font-size: 1.8rem; color: #FFD700; margin-bottom: 20px;">
+                ¡Esperamos celebrar contigo!
+            </p>
+            <div style="display: flex; justify-content: center; gap: 20px; color: #FFEAA7;">
+                <i class="fas fa-heart" style="font-size: 1.5rem; animation: pulse 2s infinite;"></i>
+                <i class="fas fa-star" style="font-size: 1.5rem; animation: pulse 2s infinite; animation-delay: 0.5s;"></i>
+                <i class="fas fa-heart" style="font-size: 1.5rem; animation: pulse 2s infinite; animation-delay: 1s;"></i>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Invitation Page -->
+    <div id="invitation-page" class="page">
+        <section class="hero-section">
+            <div class="hero-bg">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080" alt="Elegant quinceañera celebration">
+            </div>
+            
+            <div class="hero-content animate-fade-in">
+                <div class="card" style="max-width: 700px; margin: 0 auto;">
+                    <!-- Decorative Top -->
+                    <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 30px; color: #FFD700;">
+                        <i class="fas fa-crown" style="font-size: 2rem; animation: pulse 2s infinite;"></i>
+                        <i class="fas fa-heart" style="font-size: 1.5rem; animation: pulse 2s infinite; animation-delay: 0.5s;"></i>
+                        <i class="fas fa-crown" style="font-size: 2rem; animation: pulse 2s infinite; animation-delay: 1s;"></i>
+                    </div>
+
+                    <!-- Parents Names -->
+                    <h1 class="font-great-vibes title-lg animate-glow" style="margin-bottom: 20px;">
+                        Jesus Cruz
+                    </h1>
+                    
+                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <div style="width: 80px; height: 2px; background: linear-gradient(to right, transparent, #FFD700);"></div>
+                        <span class="font-dancing" style="font-size: 1.5rem; color: #FFEAA7; margin: 0 16px;">y</span>
+                        <div style="width: 80px; height: 2px; background: linear-gradient(to left, transparent, #FFD700);"></div>
+                    </div>
+                    
+                    <h2 class="font-great-vibes title-lg animate-glow" style="margin-bottom: 40px;">
+                        Carolina Santiago
+                    </h2>
+
+                    <!-- Invitation Text -->
+                    <div style="margin-bottom: 40px;">
+                        <p class="font-dancing" style="font-size: 2.5rem; color: #FFEAA7; margin-bottom: 16px;">
+                            Tiene el honor de invitarte a celebrar
+                              un evento importante como lo son
+                        </p>
+                      
+
+                    <!-- Event Title -->
+                    <div style="margin-bottom: 40px;">
+                        <h3 class="font-great-vibes" style="font-size: 3rem; color: #FFD700; margin-bottom: 16px; animation: glow 2s ease-in-out infinite alternate;">
+                            Los XV años
+                        </h3>
+                        <p class="font-dancing" style="font-size: 2.5rem; color: #FFEAA7; margin-bottom: 16px;">
+                            de nuestra querida hija
+                    </div>
+
+                    <!-- Quinceañera Name -->
+                    <h4 class="font-great-vibes animate-glow" style="font-size: 4rem; color: #FFD700; margin-bottom: 40px; text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.5);">
+                        Esmeralda
+                    </h4>
+
+                   
+
+                    <!-- Event Details -->
+                    <div style="background: linear-gradient(135deg, rgba(139, 0, 0, 0.5), rgba(255, 215, 0, 0.5)); padding: 30px; border-radius: 16px; border: 1px solid #FFD700; margin-bottom: 30px;">
+                        <p class="font-dancing" style="font-size: 2rem; margin-bottom: 8px;">
+                            Sábado 12 de Julio del 2025
+                        </p>
+                        <p style="font-size: 1.3rem; color: #FFEAA7;">
+                            A las 4:00 PM
+                        </p>
+                    </div>
+
+                    <!-- Call to Action -->
+ <p class="font-dancing" style="font-size: 1.3rem; color: #f0d434; font-style: italic;">
+                            "Tu presencia hará este día aún más especial"
+                        </p>
+                        </p>
+                        <p class="font-dancing" style="font-size: 1.3rem; color: #FFEAA7; font-style: italic;">
+                            "Una nueva princesa está por brillar"
+                        </p>
+                    </div>
+
+                    <!-- Navigation Button -->
+                    <button onclick="showMainPage()" class="btn" style="margin-bottom: 30px;">
+                        <i class="fas fa-heart"></i>
+                        Ver Detalles del Evento
+                    </button>
+
+                    <!-- Decorative Bottom -->
+                    <div style="display: flex; justify-content: center; gap: 16px; color: #FFD700;">
+                        <i class="fas fa-star" style="font-size: 1.5rem; animation: pulse 2s infinite;"></i>
+                        <i class="fas fa-heart" style="font-size: 2rem; animation: pulse 2s infinite; animation-delay: 0.5s;"></i>
+                        <i class="fas fa-star" style="font-size: 1.5rem; animation: pulse 2s infinite; animation-delay: 1s;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 40px 20px;">
+            <p class="font-dancing" style="font-size: 1.2rem; color: #FFEAA7;">
+                Con amor y bendiciones
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Global variables
+        let currentPage = 'main';
+        let isPlaying = false;
+        
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            // Create floating particles
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.width = (Math.random() * 4 + 4) + 'px';
+                particle.style.height = particle.style.width;
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Create sparkle particles
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = '✨';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparkle.style.fontSize = (Math.random() * 8 + 8) + 'px';
+                particlesContainer.appendChild(sparkle);
+            }
+        }
+
+        // Page navigation
+        function togglePage() {
+            if (currentPage === 'main') {
+                showInvitationPage();
+            } else {
+                showMainPage();
+            }
+        }
+
+        function showMainPage() {
+            document.getElementById('main-page').classList.add('active');
+            document.getElementById('invitation-page').classList.remove('active');
+            document.getElementById('nav-text').textContent = 'Ver Invitación';
+            currentPage = 'main';
+        }
+
+        function showInvitationPage() {
+            document.getElementById('invitation-page').classList.add('active');
+            document.getElementById('main-page').classList.remove('active');
+            document.getElementById('nav-text').textContent = 'Ver Detalles';
+            currentPage = 'invitation';
+        }
+
+        // Music player
+        function toggleMusic() {
+            const audio = document.getElementById('background-music');
+            const btn = document.getElementById('music-btn');
+            
+            if (isPlaying) {
+                audio.pause();
+                btn.innerHTML = '<i class="fas fa-music"></i>';
+                isPlaying = false;
+            } else {
+                audio.play().then(() => {
+                    btn.innerHTML = '<i class="fas fa-pause"></i>';
+                    isPlaying = true;
+                }).catch(error => {
+                    console.error('Error playing audio:', error);
+                    btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+                });
+            }
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('2025-07-12T16:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = `
+                    <div class="countdown-item">
+                        <span class="countdown-number">${days.toString().padStart(3, '0')}</span>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${hours.toString().padStart(2, '0')}</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${minutes.toString().padStart(2, '0')}</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${seconds.toString().padStart(2, '0')}</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                `;
+            } else {
+                document.getElementById('countdown').innerHTML = `
+                    <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #FFD700, #FFEAA7); color: #8B0000; padding: 30px; border-radius: 16px; border: 2px solid #FFD700; text-align: center;">
+                        <h3 class="font-dancing" style="font-size: 3rem; font-weight: bold; animation: pulse 2s infinite;">
+                            ¡Es hoy!
+                        </h3>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html>
